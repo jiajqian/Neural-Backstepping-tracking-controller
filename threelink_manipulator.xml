@@ -1,0 +1,50 @@
+<mujoco>
+	<option timestep="0.001" integrator="RK4" gravity="0 0 0">
+		<flag sensornoise="enable" energy="enable" contact="disable" />
+	</option>
+	<worldbody>
+		<light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>
+		<!-- <camera name="camera1" pos="0 -0.1 0.07"/> -->
+		<geom type="plane" size="3 1 0.1" rgba=".5 0.5 0.5 1"/>
+		<body pos="0.5 0 3.25" euler="0 90 0">
+			<joint name="pin" type="hinge" axis = "0 -1 0" pos="0 0 -0.5"/>
+			<geom type="cylinder" size="0.05 0.5" rgba="0 .9 0 1" mass="1"/>
+			<site name="fixed_point" pos="0 0 -0.5" size="0.1" rgba="1 1 1 1"/>
+      		<body pos="0 0.1 1" euler="0 0 0">
+				<joint name="pin2" type="hinge" axis = "0 -1 0" pos="0 0 -0.5"/>
+				<geom type="cylinder" size="0.05 0.5" rgba="0 0 .9 1" mass="1"/>
+				<!-- <site name="endeff" pos="0 0 0.5" size="0.1"/> -->
+				<body pos="0 0.1 1" euler="0 0 0">
+					<joint name="pin3" type="hinge" axis = "0 -1 0" pos="0 0 -0.5"/>
+					<geom type="cylinder" size="0.05 0.5" rgba="0 .9 0 1" mass="1"/>
+				</body>
+			</body>
+
+			
+		</body>
+	</worldbody>
+
+	<actuator>
+		<motor name="motor1" joint="pin" gear="1"/>
+		<motor name="motor2" joint="pin2" gear="1"/>
+		<motor name="motor3" joint="pin3" gear="1"/>
+<!-- 
+		<position name="pservo1" joint="pin"  />
+		<velocity name="vservo1" joint="pin"  />
+
+		<position name="pservo2" joint="pin2"  />
+		<velocity name="vservo2" joint="pin2"  /> -->
+	</actuator>
+
+	<sensor>
+		<jointpos joint="pin"/>
+		<jointpos joint="pin2"/>
+		<jointpos joint="pin3"/>
+		<jointvel joint="pin"/>
+		<jointvel joint="pin2"/>
+		<jointvel joint="pin3"/>
+		<actuatorfrc actuator="motor1"/>
+		<actuatorfrc actuator="motor2"/>
+		<actuatorfrc actuator="motor3"/>
+	</sensor>
+</mujoco>
