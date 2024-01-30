@@ -749,7 +749,7 @@ class ManipulatorDrawing(MuJoCoBase):
 
 
 def main():
-    xml_path = "MuJoCo\\threelink_manipulator.xml"
+    xml_path = "threelink_manipulator.xml"
     sim = ManipulatorDrawing(xml_path)
     sim.reset()
 
