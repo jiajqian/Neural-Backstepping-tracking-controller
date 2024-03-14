@@ -140,7 +140,7 @@ class NBS_tracking_control_learner(pl.LightningModule):
         self.icnn_min_lr = 1e-1,
         self.alpha=0
 
-        self.S = torch.eyes(coord_dim)*torch.Tensor([1.0])
+        self.S = torch.eye(coord_dim)*torch.Tensor([1.0])
 
         self.icnn_module=ICNN()
         self.damping_module=Damping()
